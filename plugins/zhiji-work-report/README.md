@@ -5,10 +5,19 @@
 ## 安装
 
 ```bash
-npx skillstore add YangChengTeam/zhiji-work-report
+claude plugin marketplace add YangChengTeam/skills
+claude plugin install zhiji-work-report@yangcheng
 ```
 
-在**项目根目录**执行。CLI 会自动识别 Codex 与 Claude Code 的技能目录，两个都存在时一起装。装好后重启会话，让宿主重新扫描技能目录。
+marketplace 只需注册一次。装好后重启会话，让宿主重新扫描技能目录，用 `claude plugin list` 确认。
+
+Codex 不认 Claude Code 的插件机制，直接拉文件到技能目录（在**项目根目录**执行）：
+
+```bash
+mkdir -p .codex/skills/zhiji-work-report \
+  && curl -fsSL https://raw.githubusercontent.com/YangChengTeam/skills/main/plugins/zhiji-work-report/skills/zhiji-work-report/SKILL.md \
+       -o .codex/skills/zhiji-work-report/SKILL.md
+```
 
 ## 前置条件
 
