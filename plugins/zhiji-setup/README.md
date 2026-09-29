@@ -37,8 +37,10 @@ macOS 与 Linux 下载完要 `chmod +x`——HTTP 下载不带执行位。
 先在智迹「账号设置 → 个人访问令牌」签一个令牌（只显示一次），然后：
 
 ```bash
-<技能目录>/bin/zhiji login --url http://<智迹地址> --token <令牌>
+<技能目录>/bin/zhiji login --token <令牌>
 ```
+
+地址默认团队部署，接别的实例时才加 `--url`。
 
 令牌等于整个账号，只保存在自己机器的 `~/.zhiji/config.json`（0600）。不要写进项目文件或
 提交记录。也可以用环境变量 `ZHIJI_API_URL` / `ZHIJI_PAT` 代替 `login`。

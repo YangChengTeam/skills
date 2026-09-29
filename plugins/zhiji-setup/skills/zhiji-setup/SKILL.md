@@ -18,10 +18,8 @@ description: 一条龙把当前目录接入智迹：创建项目、签发 MCP �
 
 先看 `<技能目录>/bin/` 下有没有 `zhiji`（Windows 是 `zhiji.exe`）。有就直接跳到下一步。
 
-没有的话需要下载一次。下载地址是智迹站点，形如 `http://<智迹地址>/skills/zhiji-setup/bin/`：
-
-- 用户之前用过 CLI 的话，`~/.zhiji/config.json` 里的 `apiUrl` 就是智迹地址；
-- 否则**问用户要智迹地址**，不要猜。
+没有的话需要下载一次。智迹地址默认是 `http://172.16.6.139:8089`，
+如果用户明确说了别的实例就用他说的（`~/.zhiji/config.json` 里的 `apiUrl` 也是线索）。
 
 按用户的系统选对应文件，下载后统一改名成 `bin/zhiji`（Windows 为 `bin/zhiji.exe`）：
 
@@ -38,7 +36,7 @@ macOS / Linux 下载完必须 `chmod +x`——HTTP 下载不带执行位，漏�
 macOS / Linux：
 
 ```bash
-BASE=http://<智迹地址>; DIR=<技能目录>
+BASE=http://172.16.6.139:8089; DIR=<技能目录>
 mkdir -p "$DIR/bin" \
   && curl -fsSL "$BASE/skills/zhiji-setup/bin/zhiji-$(uname -s | tr 'A-Z' 'a-z')-$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/')" -o "$DIR/bin/zhiji" \
   && chmod +x "$DIR/bin/zhiji"
@@ -48,7 +46,7 @@ Windows PowerShell：
 
 ```powershell
 New-Item -ItemType Directory -Force <技能目录>\bin | Out-Null
-Invoke-WebRequest http://<智迹地址>/skills/zhiji-setup/bin/zhiji-windows-amd64.exe -OutFile <技能目录>\bin\zhiji.exe
+Invoke-WebRequest http://172.16.6.139:8089/skills/zhiji-setup/bin/zhiji-windows-amd64.exe -OutFile <技能目录>\bin\zhiji.exe
 ```
 
 ## 第二步：执行接入
@@ -67,7 +65,9 @@ Invoke-WebRequest http://<智迹地址>/skills/zhiji-setup/bin/zhiji-windows-amd
 CLI 报「尚未登录」时，让用户自己完成登录，不要替他索要或粘贴令牌：
 
 > 请到智迹「账号设置 → 个人访问令牌」签发一个令牌，然后运行：
-> `<技能目录>/bin/zhiji login --url <智迹地址> --token <你的令牌>`
+> `<技能目录>/bin/zhiji login --token <你的令牌>`
+>
+> （地址默认 `http://172.16.6.139:8089`，别的实例才要加 `--url`。）
 
 令牌等于整个账号，只在签发时显示一次。不要把它写进任何项目文件、聊天记录或提交信息。
 
