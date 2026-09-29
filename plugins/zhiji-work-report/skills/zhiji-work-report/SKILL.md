@@ -10,7 +10,9 @@ MCP 跑在本机，读取本机的 Codex / Claude Code 会话文件；只有本�
 
 ## 前置检查
 
-工具名以 `zhiji_` 开头（不同宿主可能带前缀，例如 `mcp__zhiji__zhiji_report_work`）。
+工具名以 `zhiji_` 开头（不同宿主可能带前缀，例如 Claude Code 的 `mcp__zhiji__zhiji_report_work`；
+Codex 按项目区分条目名，前缀形如 `zhiji_<项目slug>__zhiji_report_work`）。
+MCP 按项目配置，所以只会看到当前项目的那一套工具；看到多套时，选条目名对应本项目的那套。
 如果看不到这些工具，说明本项目还没接入 MCP：让用户到智迹「MCP 接入」页签发令牌并按页面提示配置，
 然后重启会话。不要试图自己去读 `~/.codex` 或 `~/.claude` 下的会话文件来代替。
 

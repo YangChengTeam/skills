@@ -14,6 +14,7 @@ plugins/<name>/
 
 | 技能 | 说明 |
 | --- | --- |
+| [zhiji-setup](plugins/zhiji-setup) | 一条龙把当前目录接入智迹：创建项目、签发 MCP 令牌、写好 Agent 配置、装好上报技能 |
 | [zhiji-work-report](plugins/zhiji-work-report) | 把当前项目自上次上报以来的新增工作总结成工作日志，上报到智迹，并查询 Token 用量 |
 
 ## 安装（Claude Code）
