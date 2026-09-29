@@ -7,7 +7,7 @@ description: 一条龙把当前目录接入智迹：创建项目、签发 MCP �
 
 本技能调用 `zhiji` 命令行工具。它会按顺序完成四件事，并且可以重复运行：
 
-1. 在智迹创建项目（同标识的项目已存在就复用）；
+1. 在智迹创建项目，带上你根据这个仓库写的一句说明（同标识的项目已存在就复用）；
 2. 为本机签发一个 MCP 令牌（同备注的令牌已存在就复用）；
 3. 写好本机的 Agent 配置（Claude Code 的 `.mcp.json`，或 Codex 的 `~/.codex/config.toml`）；
 4. 把 `zhiji-work-report` 技能装进项目。
@@ -49,14 +49,36 @@ New-Item -ItemType Directory -Force <技能目录>\bin | Out-Null
 Invoke-WebRequest http://172.16.6.139:8089/skills/zhiji-setup/bin/zhiji-windows-amd64.exe -OutFile <技能目录>\bin\zhiji.exe
 ```
 
-## 第二步：执行接入
+## 第二步：看一眼项目，写一句说明
 
-- 类 Unix：`<技能目录>/bin/zhiji init "<项目名>" --dir <项目根绝对路径>`
-- Windows：`<技能目录>\bin\zhiji.exe init "<项目名>" --dir <项目根绝对路径>`
+这句说明会显示在智迹的项目列表里，让别人一眼知道这是什么项目。**先看再写**，材料按这个顺序找：
+
+1. `README.md` 开头几行——通常直接就是一句话简介；
+2. `package.json` / `go.mod` / `pyproject.toml` / `Cargo.toml` 的 `description` 字段和依赖；
+3. 顶层目录结构（有 `apps/`？`src/` 下是什么？）。
+
+写成**一句中文**，30–60 字，说清**这是什么、给谁用、什么技术栈**。举例：
+
+- `面向研发团队的 AI Agent 工作观测平台，Go API + React 控制台`
+- `微信公众号内容自动生成与发布工具，Python + FastAPI`
+
+几条要求：
+
+- **看不出来就别写**，直接省掉 `--description`。留空比写一句错的强——错的说明会被当成事实读。
+- 不要写成「这是一个项目」「一个 Go 项目」这种等于没说的话。
+- 不要把 README 整段抄进去，一句话。
+
+## 第三步：执行接入
+
+- 类 Unix：`<技能目录>/bin/zhiji init "<项目名>" --dir <项目根绝对路径> --description "<说明>"`
+- Windows：`<技能目录>\bin\zhiji.exe init "<项目名>" --dir <项目根绝对路径> --description "<说明>"`
 
 `--dir` 传当前项目的根目录（一般是 Git 仓库根）。用户没说项目名时，用目录名，不要自己编一个。
 
 宿主是 Codex 时加 `--agent codex`；两个都要配时用 `--agent both`。默认是 `claude`。
+
+说明只在项目**还没有说明**时写入：已经有的（可能是别人在网页上精心写的）不会被覆盖，
+重复执行也不会反复改写。想改已有的说明，去网页「项目管理」里编辑。
 
 命令会逐行打印做了什么。把结果如实转述给用户，**不要**把输出里的令牌明文复述出来。
 

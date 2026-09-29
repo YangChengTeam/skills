@@ -4,7 +4,8 @@
 
 说一句「创建 xx 项目」就够了，技能会调用 `zhiji` 命令行工具依次完成四件事：
 
-1. 在智迹创建项目——同标识的项目已存在就复用；
+1. 在智迹创建项目，并带上技能读过仓库后写的一句说明——同标识的项目已存在就复用，
+   已有的说明不会被覆盖；
 2. 为本机签发一个 MCP 令牌——同备注的令牌已存在就复用；
 3. 写好本机的 Agent 配置——Claude Code 的 `.mcp.json`，或 Codex 的 `~/.codex/config.toml`；
 4. 把 [`zhiji-work-report`](../zhiji-work-report) 装进项目，并把 `.mcp.json` 加进 `.gitignore`。
