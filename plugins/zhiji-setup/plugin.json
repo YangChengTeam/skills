@@ -1,0 +1,20 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "zhiji-setup",
+  "version": "1.0.0",
+  "description": "一条龙把当前目录接入智迹：创建项目、签发 MCP 令牌、写好 Agent 配置、装好上报技能",
+  "author": {
+    "name": "YangChengTeam"
+  },
+  "repository": "https://github.com/YangChengTeam/skills",
+  "keywords": ["onboarding", "mcp", "cli", "zhiji"],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "智迹一键接入",
+        "shortDescription": "建项目、签令牌、写配置、装技能，一条龙接入智迹",
+        "category": "Productivity"
+      }
+    }
+  }
+}

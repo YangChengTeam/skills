@@ -9,6 +9,19 @@
   },
   "plugins": [
     {
+      "name": "zhiji-setup",
+      "source": {
+        "source": "local",
+        "path": "./plugins/zhiji-setup"
+      },
+      "description": "一条龙把当前目录接入智迹：创建项目、签发 MCP 令牌、写好 Agent 配置、装好上报技能",
+      "category": "Productivity",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
       "name": "zhiji-work-report",
       "source": {
         "source": "local",
