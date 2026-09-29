@@ -1,0 +1,25 @@
+{
+  "name": "yangcheng",
+  "description": "YangChengTeam 团队技能目录",
+  "owner": {
+    "name": "YangChengTeam"
+  },
+  "interface": {
+    "displayName": "YangChengTeam 技能"
+  },
+  "plugins": [
+    {
+      "name": "zhiji-work-report",
+      "source": {
+        "source": "local",
+        "path": "./plugins/zhiji-work-report"
+      },
+      "description": "把当前项目自上次上报以来的新增工作总结成工作日志，上报到智迹，并查询 Token 用量",
+      "category": "Productivity",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    }
+  ]
+}
