@@ -1,0 +1,25 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "zhiji-translate",
+  "version": "1.0.0",
+  "description": "通过智迹翻译文本或文件，指定目标语言，保存译文并查看调用记录。",
+  "author": {
+    "name": "YangChengTeam"
+  },
+  "repository": "https://github.com/YangChengTeam/skills",
+  "keywords": [
+    "翻译",
+    "多语言",
+    "cli",
+    "zhiji"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "shortDescription": "翻译文本和文件、保存译文与查询记录",
+        "category": "Productivity",
+        "displayName": "智迹翻译"
+      }
+    }
+  }
+}

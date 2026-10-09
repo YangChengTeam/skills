@@ -1,13 +1,18 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "zhiji-work-report",
-  "version": "1.0.0",
-  "description": "把当前项目自上次上报以来的新增工作总结成工作日志，上报到智迹，并查询 Token 用量",
+  "version": "2.0.0",
+  "description": "把当前项目自上次上报以来的新增工作总结成工作日志，上报到智迹，并查询 Token 用量。",
   "author": {
     "name": "YangChengTeam"
   },
   "repository": "https://github.com/YangChengTeam/skills",
-  "keywords": ["工作日志", "token", "mcp", "zhiji"],
+  "keywords": [
+    "工作日志",
+    "token",
+    "cli",
+    "zhiji"
+  ],
   "extensions": {
     "com.openai": {
       "interface": {

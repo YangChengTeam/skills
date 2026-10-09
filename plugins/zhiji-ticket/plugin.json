@@ -1,0 +1,26 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "zhiji-ticket",
+  "version": "1.0.0",
+  "description": "把需要别人做的事提成工单并自动分配到处理组，或者处理分配给自己所在组的工单。",
+  "author": {
+    "name": "YangChengTeam"
+  },
+  "repository": "https://github.com/YangChengTeam/skills",
+  "keywords": [
+    "工单",
+    "运维",
+    "跨团队协作",
+    "cli",
+    "zhiji"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "shortDescription": "跨团队提工单、认领处理与发起人验收",
+        "category": "Productivity",
+        "displayName": "智迹工单协作"
+      }
+    }
+  }
+}

@@ -1,16 +1,14 @@
 # zhiji-setup
 
-一条龙把当前目录接入智迹：创建项目、签发 MCP 令牌、写好 Agent 配置、装好上报技能。
+一条龙把当前目录接入智迹：创建项目、写好项目配置、装好上报与工单技能。
 
-说一句「创建 xx 项目」就够了，技能会调用 `zhiji` 命令行工具依次完成四件事：
+说一句「创建 xx 项目」，技能会调用智迹 CLI 依次完成三件事：
 
-1. 在智迹创建项目，并带上技能读过仓库后写的一句说明——同标识的项目已存在就复用，
-   已有的说明不会被覆盖；
-2. 为本机签发一个 MCP 令牌——同备注的令牌已存在就复用；
-3. 写好本机的 Agent 配置——Claude Code 的 `.mcp.json`，或 Codex 的 `~/.codex/config.toml`；
-4. 把 [`zhiji-work-report`](../zhiji-work-report) 装进项目，并把 `.mcp.json` 加进 `.gitignore`。
+1. 创建项目并填写一句仓库说明，同标识的项目已存在就复用；
+2. 写入只含项目 ID 的 `.env.zhiji`，账号令牌留在本机；
+3. 安装 [`zhiji-work-report`](../zhiji-work-report) 和 [`zhiji-ticket`](../zhiji-ticket)。
 
-之后重启 Agent，用 `$zhiji-work-report` 就能上报。
+`init` 可以重复运行，会保留已有配置和说明，并清理旧版本留下的智迹 MCP 配置。
 
 ## 安装
 
@@ -19,42 +17,39 @@ claude plugin marketplace add YangChengTeam/skills
 claude plugin install zhiji-setup@yangcheng
 ```
 
-## CLI 从哪来
+Codex 使用：
 
-本仓库**只放技能文本，不放二进制**——公开仓库塞几十 MB 的可执行文件每次发布都会让 Git
-历史永久膨胀。技能首次运行时发现 `bin/zhiji` 不存在，会从你们自己的智迹站点下载对应平台的
-那一个（Windows / macOS Intel / macOS Apple 芯片 / Linux x86_64 / Linux arm64）：
-
+```bash
+codex plugin marketplace add YangChengTeam/skills
+codex plugin add zhiji-setup@yangcheng
 ```
+
+## CLI 与登录
+
+需要智迹 CLI **2.2.0 或更新版本**。技能会检查版本，缺少或版本过低时从智迹实例下载到本技能的 `bin/`。支持 Windows、macOS Intel / Apple 芯片、Linux x86_64 / arm64。
+
+本仓库只分发技能文本，二进制由智迹实例提供：
+
+```text
 http://<智迹地址>/skills/zhiji-setup/bin/zhiji-<os>-<arch>
 ```
 
-macOS 与 Linux 下载完要 `chmod +x`——HTTP 下载不带执行位。
+macOS / Linux 下载后需要 `chmod +x`。默认实例是 `http://172.16.6.139:8089`，用户指定的实例优先。
 
-反正连不上智迹站点的话，这个 CLI 本来也没用——它干的每件事都要调智迹的接口。
-
-## 前提
-
-先在智迹「令牌管理」签一个令牌（只显示一次），然后：
+先到智迹「令牌管理」签发个人访问令牌，再在本机运行：
 
 ```bash
-<技能目录>/bin/zhiji login --token <令牌>
+<技能目录>/bin/zhiji login --token <你的令牌>
 ```
 
-地址默认团队部署，接别的实例时才加 `--url`。
+其他实例加 `--url <实例地址>`。账号令牌只保存在 `~/.zhiji/config.json`，不要写进项目文件或提交记录。
 
-令牌等于整个账号，只保存在自己机器的 `~/.zhiji/config.json`（0600）。不要写进项目文件或
-提交记录。也可以用环境变量 `ZHIJI_API_URL` / `ZHIJI_PAT` 代替 `login`。
+## 使用与排查
 
-## 幂等
+安装后用 `$zhiji-setup` 或「把这个项目接入智迹」触发。完整工作流见 [SKILL.md](skills/zhiji-setup/SKILL.md)。
 
-`init` 可以重复跑：项目按 slug 复用，令牌按备注复用，`.mcp.json` 与 `config.toml` 是
-**合并**而不是覆盖（你已有的其他 MCP 服务不会被动到），`.gitignore` 不会重复追加。
-
-## 排查
+接入完成后，用 `$zhiji-work-report` 上报，用 `$zhiji-ticket` 提工单；账号级生图、翻译、语音、音效服务由独立技能提供，无需初始化项目。
 
 ```bash
 <技能目录>/bin/zhiji status --dir <项目根>
 ```
-
-会打印服务地址、登录状态，以及 `.mcp.json` 和技能文件是否就位。

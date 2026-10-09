@@ -1,0 +1,8 @@
+{
+  "name": "zhiji-sfx",
+  "version": "1.0.1",
+  "description": "通过智迹按文字描述生成音效，指定时长，保存音频并查看调用记录。",
+  "author": {
+    "name": "YangChengTeam"
+  }
+}

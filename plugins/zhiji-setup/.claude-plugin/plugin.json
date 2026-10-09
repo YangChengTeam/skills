@@ -1,7 +1,7 @@
 {
   "name": "zhiji-setup",
-  "version": "1.0.0",
-  "description": "一条龙把当前目录接入智迹：创建项目、签发 MCP 令牌、写好 Agent 配置、装好上报技能",
+  "version": "2.1.0",
+  "description": "一条龙把当前目录接入智迹：创建项目、写好项目配置、装好上报与工单技能。",
   "author": {
     "name": "YangChengTeam"
   }
