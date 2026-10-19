@@ -26,7 +26,12 @@ codex plugin add zhiji-setup@yangcheng
 
 ## CLI 与登录
 
-需要智迹 CLI **2.2.0 或更新版本**。技能会检查版本，缺少或版本过低时从智迹实例下载到本技能的 `bin/`。支持 Windows、macOS Intel / Apple 芯片、Linux x86_64 / arm64。
+需要智迹 CLI **2.3.0 或更新版本**。技能会检查版本，缺少或版本过低时从智迹实例下载到本技能的 `bin/`。支持 Windows、macOS Intel / Apple 芯片、Linux x86_64 / arm64。
+
+2.3.0 起可运行 `<技能目录>/bin/zhiji upgrade --check` 查看新版本，运行同一路径的
+`zhiji upgrade` 下载并校验后升级。升级保留旧版备份，不改账号配置或待提交批次。
+2.2.x 需要手动重新下载一次以获得升级命令。显式 `--dir` 严格限定项目范围，
+省略时寻找最近的项目配置或 Git 边界，不允许整盘采集。
 
 本仓库只分发技能文本，二进制由智迹实例提供：
 
