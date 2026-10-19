@@ -18,7 +18,7 @@ codex plugin add zhiji-work-report@yangcheng
 
 ## 前置条件
 
-本技能驱动本机 `zhiji` CLI。先完成账号登录与项目 `zhiji init`，运行 `zhiji status --dir .` 检查配置；缺少 CLI 时使用 [zhiji-setup](../zhiji-setup)。
+本技能驱动本机 `zhiji` CLI **2.4.0 或更新版本**。先完成账号登录与项目 `zhiji init`，运行 `zhiji status` 检查配置；缺少 CLI 时使用 [zhiji-setup](../zhiji-setup)。2.3.x 可用 `zhiji upgrade` 更新。
 
 CLI 在本机读取 Codex / Claude Code 会话，并按项目目录过滤。不需要配置 MCP。个人令牌留在 `~/.zhiji/config.json`，不要写进项目或提交记录。
 
@@ -26,12 +26,16 @@ CLI 在本机读取 Codex / Claude Code 会话，并按项目目录过滤。不�
 
 用 `$zhiji-work-report` 或「上报工作」「写今天的工作日志」「同步到智迹」触发。
 
-必须按顺序完成两步：
+先采集，再按业务范围决定是否上报：
 
-1. 运行 `zhiji report --dir .`，取得增量会话、Token 统计和 `runId`。没有新增工作时如实说明，不编造上报。
-2. Agent 根据采集结果写 Markdown 总结，通过标准输入交给 `zhiji submit --run-id <runId> --completion <0-100>`。
+1. 运行 `zhiji report`，取得增量会话、Token 统计和 `runId`。没有新增工作时如实说明，不编造上报。
+2. 确认完整批次仅为智迹安装、登录、接入配置、技能安装或上报验证时，执行
+   `zhiji skip --run-id <runId> --reason onboarding-only`，只推进游标，不上传事实或创建日志。
+3. 有业务工作时，Agent 写 Markdown 总结，通过标准输入交给 `zhiji submit --run-id <runId> --completion <0-100>`。
+   混合批次的总结省略接入事项，事实保持完整；智迹产品本身的开发、修复和部署仍是业务工作。
+   无正文、截断内容或仅有文件变更数量不足以判断纯接入，不得据此 skip。
 
-`runId` 保证幂等。上传中途失败后使用同一个运行标识重试，已上传事实不会重复计数；游标只在最终提交成功后前移。
+`runId` 保证上报幂等。上传中途失败后使用同一个运行标识重试，已上传事实不会重复计数；游标在最终提交或 skip 确认后前移。已上传部分事实的批次不能 skip。
 
 总结说明做了什么、为什么、结果如何，按主题组织，保留失败与阻塞事实。完整工作流见 [SKILL.md](skills/zhiji-work-report/SKILL.md)。
 

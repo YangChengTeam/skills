@@ -26,7 +26,7 @@ codex plugin add zhiji-setup@yangcheng
 
 ## CLI 与登录
 
-需要智迹 CLI **2.3.0 或更新版本**。技能会检查版本，缺少或版本过低时从智迹实例下载到本技能的 `bin/`。支持 Windows、macOS Intel / Apple 芯片、Linux x86_64 / arm64。
+需要智迹 CLI **2.4.0 或更新版本**。技能会检查版本，缺少或版本过低时从智迹实例下载到本技能的 `bin/`。支持 Windows、macOS Intel / Apple 芯片、Linux x86_64 / arm64。
 
 2.3.0 起可运行 `<技能目录>/bin/zhiji upgrade --check` 查看新版本，运行同一路径的
 `zhiji upgrade` 下载并校验后升级。升级保留旧版备份，不改账号配置或待提交批次。
@@ -53,7 +53,9 @@ macOS / Linux 下载后需要 `chmod +x`。默认实例是 `http://172.16.6.139:
 
 安装后用 `$zhiji-setup` 或「把这个项目接入智迹」触发。完整工作流见 [SKILL.md](skills/zhiji-setup/SKILL.md)。
 
-接入完成后，用 `$zhiji-work-report` 上报，用 `$zhiji-ticket` 提工单；账号级生图、翻译、语音、音效服务由独立技能提供，无需初始化项目。
+接入完成后只用 status 验证配置，不为安装、登录、接入或验证生成工作日志。有业务工作后
+再用 `$zhiji-work-report` 上报，纯接入批次由该技能使用 `skip` 过滤。
+用 `$zhiji-ticket` 提工单；账号级生图、翻译、语音、音效服务由独立技能提供，无需初始化项目。
 
 ```bash
 <技能目录>/bin/zhiji status --dir <项目根>
