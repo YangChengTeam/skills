@@ -1,6 +1,6 @@
 {
   "name": "zhiji-setup",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "description": "一条龙把当前目录接入智迹：创建项目、写好项目配置、装好上报与工单技能。",
   "author": {
     "name": "YangChengTeam"

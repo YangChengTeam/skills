@@ -18,15 +18,18 @@ codex plugin add zhiji-work-report@yangcheng
 
 ## 前置条件
 
-本技能驱动本机 `zhiji` CLI **2.5.0 或更新版本**。先完成账号登录与项目 `zhiji init`，运行 `zhiji status` 检查配置；缺少 CLI 时使用 [zhiji-setup](../zhiji-setup)。2.3.x/2.4.x 可用 `zhiji upgrade` 更新。
+本技能驱动本机 `zhiji` CLI **2.6.0 或更新版本**。先完成账号登录与项目 `zhiji init`，运行 `zhiji status` 检查配置；缺少 CLI 时使用 [zhiji-setup](../zhiji-setup)。2.3.x–2.5.x 可用 `zhiji upgrade` 更新。
 
 旧项目运行一次 `zhiji skills update --auto on` 更新并接管已安装副本，之后 report 前
 每天自动检查一次，断网继续采集，人工修改保留并提示。新 init 安装的副本默认受管。
 插件缓存仍由宿主市场管理，CLI 不改写插件缓存；技能更新后需要重新读取指令。
 
-历史漏采使用 `zhiji report --history`：完整扫描当前机器本项目活动与归档会话，
-支持 .jsonl.zst，先核对服务器已有标识，只保留缺失事实，再按正常流程总结并 submit。
-不改变正常游标，重复补采无缺失时不生成批次或日志；总结需标明历史时间。
+历史补采使用 `zhiji report --history` 建立或继续计划，支持活动/归档及 .jsonl.zst。
+每批只含一个会话，长会话分段，最多 24000 个展示字符、1000 条事实或约 512 KiB。
+每批单独审阅总结并 submit/skip，再运行相同 report 继续；仅显示准备进度时继续命令。
+未完成批次保留同一 runId，submit 可使用已保存总结重试；服务端回执恢复丢失响应的计数。
+`--history --status` 查看进度，`--history --new` 新建扫描并保留旧计划。正常游标不变，
+已存在事实不重复入库，待处理历史批次不自动过期。总结标明历史时间，不冒充今天新成果。
 
 CLI 在本机读取 Codex / Claude Code 会话，并按项目目录过滤。不需要配置 MCP。个人令牌留在 `~/.zhiji/config.json`，不要写进项目或提交记录。
 
