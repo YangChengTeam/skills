@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "zhiji-work-report",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "把当前项目自上次上报以来的新增工作总结成工作日志，上报到智迹，并查询 Token 用量。",
   "author": {
     "name": "YangChengTeam"
