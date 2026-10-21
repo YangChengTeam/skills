@@ -1,6 +1,6 @@
 {
   "name": "zhiji-translate",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "通过智迹翻译文本或文件，指定目标语言，保存译文并查看调用记录。",
   "author": {
     "name": "YangChengTeam"

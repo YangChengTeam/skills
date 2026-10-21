@@ -26,7 +26,7 @@ codex plugin add zhiji-setup@yangcheng
 
 ## CLI 与登录
 
-需要智迹 CLI **2.6.0 或更新版本**。技能会检查版本，缺少或版本过低时从智迹实例下载到本技能的 `bin/`。支持 Windows、macOS Intel / Apple 芯片、Linux x86_64 / arm64。
+需要智迹 CLI **2.6.1 或更新版本**。技能会检查版本，缺少或版本过低时从智迹实例下载到本技能的 `bin/`。支持 Windows、macOS Intel / Apple 芯片、Linux x86_64 / arm64。
 
 2.5.0 取消 400 文件扫描限制，支持归档/压缩会话与 `report --history` 幂等补采。
 2.6.0 补采改为持久化分批计划，每批分别审阅提交，中断后同一命令继续；
@@ -45,7 +45,7 @@ codex plugin add zhiji-setup@yangcheng
 http://<智迹地址>/skills/zhiji-setup/bin/zhiji-<os>-<arch>
 ```
 
-macOS / Linux 下载后需要 `chmod +x`。默认实例是 `http://172.16.6.139:8089`，用户指定的实例优先。
+macOS / Linux 下载后需要 `chmod +x`。默认实例是 `http://172.16.6.163:8090`，用户指定的实例优先。
 
 先到智迹「令牌管理」签发个人访问令牌，再在本机运行：
 

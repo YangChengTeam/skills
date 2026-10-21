@@ -21,7 +21,7 @@ description: 一条龙把当前目录接入智迹：创建项目、写好项目�
 
 先看 `<技能目录>/bin/` 下有没有 `zhiji`（Windows 是 `zhiji.exe`）。
 
-有的话跑一下 `<技能目录>/bin/zhiji version`，**本技能需要 2.6.0 或更新版本**。
+有的话跑一下 `<技能目录>/bin/zhiji version`，**本技能需要 2.6.1 或更新版本**。
 2.3.x–2.5.x 使用同一路径的 `zhiji upgrade` 更新；更旧或未知命令时重新下载一次。
 2.4.0 增加 `skip`，仅有智迹接入操作的批次不再生成业务日志。
 2.5.0 完整扫描活动与归档会话，支持 `report --history` 幂等补采。
@@ -38,7 +38,7 @@ init 新安装的副本默认受管。自动更新遇到人工修改会保留，
 另一份客户端。升级来源沿用账号配置的实例地址，`ZHIJI_API_URL` 可以覆盖。
 版本足够且服务暂不可达时可以继续接入；版本不足且无法更新时明确报告错误。
 
-没有的话需要下载一次。智迹地址默认是 `http://172.16.6.139:8089`，
+没有的话需要下载一次。智迹地址默认是 `http://172.16.6.163:8090`，
 如果用户明确说了别的实例就用他说的（`~/.zhiji/config.json` 里的 `apiUrl` 也是线索）。
 
 按用户的系统选对应文件，下载后统一改名成 `bin/zhiji`（Windows 为 `bin/zhiji.exe`）：
@@ -56,7 +56,7 @@ macOS / Linux 下载完必须 `chmod +x`——HTTP 下载不带执行位，漏�
 macOS / Linux：
 
 ```bash
-BASE=http://172.16.6.139:8089; DIR=<技能目录>
+BASE=http://172.16.6.163:8090; DIR=<技能目录>
 mkdir -p "$DIR/bin" \
   && curl -fsSL "$BASE/skills/zhiji-setup/bin/zhiji-$(uname -s | tr 'A-Z' 'a-z')-$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/')" -o "$DIR/bin/zhiji" \
   && chmod +x "$DIR/bin/zhiji"
@@ -66,7 +66,7 @@ Windows PowerShell：
 
 ```powershell
 New-Item -ItemType Directory -Force <技能目录>\bin | Out-Null
-Invoke-WebRequest http://172.16.6.139:8089/skills/zhiji-setup/bin/zhiji-windows-amd64.exe -OutFile <技能目录>\bin\zhiji.exe
+Invoke-WebRequest http://172.16.6.163:8090/skills/zhiji-setup/bin/zhiji-windows-amd64.exe -OutFile <技能目录>\bin\zhiji.exe
 ```
 
 ## 第二步：看一眼项目，写一句说明
@@ -110,7 +110,7 @@ CLI 报「尚未登录」时，让用户自己完成登录，不要替他索要�
 > 请到智迹「令牌管理」签发一个令牌，然后运行：
 > `<技能目录>/bin/zhiji login --token <你的令牌>`
 >
-> （地址默认 `http://172.16.6.139:8089`，别的实例才要加 `--url`。）
+> （地址默认 `http://172.16.6.163:8090`，别的实例才要加 `--url`。）
 
 令牌等于整个账号，只在签发时显示一次。不要把它写进任何项目文件、聊天记录或提交信息。
 

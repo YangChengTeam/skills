@@ -1,6 +1,6 @@
 {
   "name": "zhiji-image",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "通过智迹调用团队生图服务，支持 gpt-image-2.5 等已配置模型，保存图片并查看调用记录。",
   "author": {
     "name": "YangChengTeam"

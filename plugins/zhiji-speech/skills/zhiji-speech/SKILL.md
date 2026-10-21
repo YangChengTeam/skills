@@ -11,7 +11,7 @@ description: 通过智迹团队服务把文案合成为语音，保存音频并�
 
 先找 PATH 中的 `zhiji` 或本 SKILL.md 所在目录的 `bin/zhiji`（Windows 为 `bin/zhiji.exe`），运行 `version`。需要 **2.2.0 或更新版本**；版本过低或不存在时，下载到本技能的 `bin/`，不要覆盖系统中的旧文件。
 
-智迹地址默认 `http://172.16.6.139:8089`。用户指定的实例优先，其次参考 `~/.zhiji/config.json` 的 `apiUrl`。二进制统一从该实例的 `/skills/zhiji-setup/bin/` 下载：
+智迹地址默认 `http://172.16.6.163:8090`。用户指定的实例优先，其次参考 `~/.zhiji/config.json` 的 `apiUrl`。二进制统一从该实例的 `/skills/zhiji-setup/bin/` 下载：
 
 | 系统 | 文件名 |
 | --- | --- |
@@ -24,7 +24,7 @@ description: 通过智迹团队服务把文案合成为语音，保存音频并�
 macOS / Linux 示例（将技能目录替换为实际绝对路径）：
 
 ```bash
-ZHIJI_BASE=http://172.16.6.139:8089
+ZHIJI_BASE=http://172.16.6.163:8090
 ZHIJI_DIR="<技能目录>"
 mkdir -p "$ZHIJI_DIR/bin"
 curl -fsSL "$ZHIJI_BASE/skills/zhiji-setup/bin/zhiji-$(uname -s | tr 'A-Z' 'a-z')-$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/')" -o "$ZHIJI_DIR/bin/zhiji"
@@ -34,7 +34,7 @@ chmod +x "$ZHIJI_DIR/bin/zhiji"
 Windows PowerShell 示例：
 
 ```powershell
-$zhijiBase = 'http://172.16.6.139:8089'
+$zhijiBase = 'http://172.16.6.163:8090'
 $zhijiDir = '<技能目录>'
 New-Item -ItemType Directory -Force "$zhijiDir\bin" | Out-Null
 Invoke-WebRequest "$zhijiBase/skills/zhiji-setup/bin/zhiji-windows-amd64.exe" -OutFile "$zhijiDir\bin\zhiji.exe"
