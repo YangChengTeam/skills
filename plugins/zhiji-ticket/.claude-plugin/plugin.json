@@ -1,6 +1,6 @@
 {
   "name": "zhiji-ticket",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "把需要别人做的事提成工单并自动分配到处理组，或者处理分配给自己所在组的工单。",
   "author": {
     "name": "YangChengTeam"

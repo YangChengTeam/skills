@@ -1,6 +1,6 @@
 {
   "name": "zhiji-speech",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "通过智迹把文案合成为语音，选择模型、声音和格式，保存音频并查看调用记录。",
   "author": {
     "name": "YangChengTeam"
