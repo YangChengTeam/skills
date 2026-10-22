@@ -1,0 +1,25 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "zhiji-code",
+  "version": "1.0.0",
+  "description": "跨项目搜索和阅读团队仓库代码，并按本人身份提交单文件改动。",
+  "author": {
+    "name": "YangChengTeam"
+  },
+  "repository": "https://github.com/YangChengTeam/skills",
+  "keywords": [
+    "code",
+    "repository",
+    "gitlab",
+    "zhiji"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "shortDescription": "跨项目搜索、阅读和提交团队代码",
+        "category": "Productivity",
+        "displayName": "智迹团队代码"
+      }
+    }
+  }
+}

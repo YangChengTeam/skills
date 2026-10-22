@@ -1,0 +1,25 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "zhiji-doc",
+  "version": "1.0.0",
+  "description": "检索、阅读和撰写团队 GitLab Wiki，按本人身份读写，权限由 GitLab 判定。",
+  "author": {
+    "name": "YangChengTeam"
+  },
+  "repository": "https://github.com/YangChengTeam/skills",
+  "keywords": [
+    "documentation",
+    "wiki",
+    "gitlab",
+    "zhiji"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "shortDescription": "检索、阅读和撰写团队 GitLab Wiki",
+        "category": "Productivity",
+        "displayName": "智迹团队文档"
+      }
+    }
+  }
+}

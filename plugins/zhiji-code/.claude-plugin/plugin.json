@@ -1,0 +1,8 @@
+{
+  "name": "zhiji-code",
+  "version": "1.0.0",
+  "description": "跨项目搜索和阅读团队仓库代码，并按本人身份提交单文件改动。",
+  "author": {
+    "name": "YangChengTeam"
+  }
+}

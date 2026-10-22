@@ -1,0 +1,8 @@
+{
+  "name": "zhiji-doc",
+  "version": "1.0.0",
+  "description": "检索、阅读和撰写团队 GitLab Wiki，按本人身份读写，权限由 GitLab 判定。",
+  "author": {
+    "name": "YangChengTeam"
+  }
+}

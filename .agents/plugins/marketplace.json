@@ -98,6 +98,32 @@
         "installation": "AVAILABLE",
         "authentication": "ON_INSTALL"
       }
+    },
+    {
+      "name": "zhiji-doc",
+      "source": {
+        "source": "local",
+        "path": "./plugins/zhiji-doc"
+      },
+      "description": "检索、阅读和撰写团队 GitLab Wiki，按本人身份读写，权限由 GitLab 判定。",
+      "category": "Productivity",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "zhiji-code",
+      "source": {
+        "source": "local",
+        "path": "./plugins/zhiji-code"
+      },
+      "description": "跨项目搜索和阅读团队仓库代码，并按本人身份提交单文件改动。",
+      "category": "Productivity",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
     }
   ]
 }
