@@ -1,0 +1,8 @@
+{
+  "name": "zhiji-repo",
+  "version": "2.0.1",
+  "description": "推送 GitLab 仓库，并搜索、阅读或提交仓库中的代码文件。",
+  "author": {
+    "name": "YangChengTeam"
+  }
+}

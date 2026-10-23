@@ -17,14 +17,14 @@ plugins/<name>/
 | 技能 | 版本 | 说明 |
 | --- | --- | --- |
 | [zhiji-work-report](plugins/zhiji-work-report) | 2.3.1 | 把当前项目自上次上报以来的新增工作总结成工作日志，上报到智迹，并查询 Token 用量。 |
-| [zhiji-setup](plugins/zhiji-setup) | 2.5.2 | 一条龙把当前目录接入智迹：创建项目、写好项目配置、装好上报与工单技能。 |
+| [zhiji-setup](plugins/zhiji-setup) | 2.10.0 | 创建智迹项目，安装上报、工单、仓库与知识库技能。 |
 | [zhiji-ticket](plugins/zhiji-ticket) | 1.0.1 | 把需要别人做的事提成工单并自动分配到处理组，或者处理分配给自己所在组的工单。 |
 | [zhiji-image](plugins/zhiji-image) | 1.0.2 | 通过智迹调用团队生图服务，支持 gpt-image-2.5 等已配置模型，保存图片并查看调用记录。 |
 | [zhiji-translate](plugins/zhiji-translate) | 1.0.2 | 通过智迹翻译文本或文件，指定目标语言，保存译文并查看调用记录。 |
 | [zhiji-speech](plugins/zhiji-speech) | 1.0.3 | 通过智迹把文案合成为语音，选择模型、声音和格式，保存音频并查看调用记录。 |
 | [zhiji-sfx](plugins/zhiji-sfx) | 1.0.3 | 通过智迹按文字描述生成音效，指定时长，保存音频并查看调用记录。 |
-| [zhiji-doc](plugins/zhiji-doc) | 1.0.0 | 检索、阅读和撰写团队 GitLab Wiki，按本人身份读写，权限由 GitLab 判定。 |
-| [zhiji-code](plugins/zhiji-code) | 1.0.0 | 跨项目搜索和阅读团队仓库代码，并按本人身份提交单文件改动。 |
+| [zhiji-doc](plugins/zhiji-doc) | 2.0.0 | 检索、阅读和上传智迹共享知识库。 |
+| [zhiji-repo](plugins/zhiji-repo) | 2.0.1 | 推送 GitLab 仓库，并搜索、阅读或提交代码文件。 |
 
 ## 安装（Claude Code）
 

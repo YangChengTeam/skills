@@ -13,7 +13,7 @@
     {
       "name": "zhiji-setup",
       "source": "./plugins/zhiji-setup",
-      "description": "创建项目、安装技能，并按项目类型从全库下发相关要求文档。"
+      "description": "创建智迹项目，安装上报、工单、仓库与知识库技能。"
     },
     {
       "name": "zhiji-ticket",
@@ -43,12 +43,12 @@
     {
       "name": "zhiji-doc",
       "source": "./plugins/zhiji-doc",
-      "description": "检索、阅读和撰写团队 GitLab Wiki，按本人身份读写，权限由 GitLab 判定。"
+      "description": "检索、阅读和上传智迹共享知识库；按 Android、iOS、AI 等分类查找团队经验。"
     },
     {
-      "name": "zhiji-code",
-      "source": "./plugins/zhiji-code",
-      "description": "跨项目搜索和阅读团队仓库代码，并按本人身份提交单文件改动。"
+      "name": "zhiji-repo",
+      "source": "./plugins/zhiji-repo",
+      "description": "推送 GitLab 仓库，并搜索、阅读或提交仓库中的代码文件。"
     }
   ]
 }

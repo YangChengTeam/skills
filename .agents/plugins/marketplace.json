@@ -14,7 +14,7 @@
         "source": "local",
         "path": "./plugins/zhiji-setup"
       },
-      "description": "一条龙把当前目录接入智迹：创建项目、写好项目配置、装好上报与工单技能。",
+      "description": "创建智迹项目，安装上报、工单、仓库与知识库技能。",
       "category": "Productivity",
       "policy": {
         "installation": "AVAILABLE",
@@ -105,7 +105,7 @@
         "source": "local",
         "path": "./plugins/zhiji-doc"
       },
-      "description": "检索、阅读和撰写团队 GitLab Wiki，按本人身份读写，权限由 GitLab 判定。",
+      "description": "检索、阅读和上传智迹共享知识库；按 Android、iOS、AI 等分类查找团队经验。",
       "category": "Productivity",
       "policy": {
         "installation": "AVAILABLE",
@@ -113,12 +113,12 @@
       }
     },
     {
-      "name": "zhiji-code",
+      "name": "zhiji-repo",
       "source": {
         "source": "local",
-        "path": "./plugins/zhiji-code"
+        "path": "./plugins/zhiji-repo"
       },
-      "description": "跨项目搜索和阅读团队仓库代码，并按本人身份提交单文件改动。",
+      "description": "推送 GitLab 仓库，并搜索、阅读或提交仓库中的代码文件。",
       "category": "Productivity",
       "policy": {
         "installation": "AVAILABLE",

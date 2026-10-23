@@ -1,103 +1,41 @@
 ---
 name: zhiji-doc
-description: 检索、阅读和撰写团队文档（GitLab Wiki）。当用户说「查一下文档」「团队文档里怎么写的」「把这个写成文档」「搜一下 Wiki」，或需要查阅/沉淀团队知识时使用。
+description: 检索、阅读和上传智迹共享知识库。当用户说「查知识库」「团队有没有这方面经验」「把经验上传到知识库」，或 Agent 需要团队共享知识时使用。
 ---
 
-# 智迹团队文档
+# 智迹共享知识库
 
-用 `zhiji doc` 读写团队 GitLab 的 Wiki。智迹代为保管每人的 GitLab 令牌，读写都以**你本人的身份**进行，权限由 GitLab 判定。无需项目 `init`。不要索要或回显任何令牌。
+`zhiji doc` 只连接智迹共享知识库，与 GitLab Wiki、GitLab 账号和项目代码库无关。所有已登录用户可读取和上传；管理员在网页「开发者服务 → 知识库」建立一级与二级分类。Android / 过审和 iOS / 过审是两条不同的分类路径。无需 `zhiji init`。
 
-## 实例地址与迁移
+## 准备
 
-团队生产实例为 `http://172.16.6.163:8090`，旧实例为 `http://172.16.6.139:8089`。
-用户明确指定其它实例时按其要求。否则先确定当前命令的有效地址：`ZHIJI_API_URL` 优先，
-项目命令再看项目 `.env.zhiji`，最后看 `~/.zhiji/config.json` 的 `apiUrl`；工单和服务命令
-使用账号配置，不要求项目初始化。只检查地址字段，不输出完整账号配置或令牌。
+先运行 `zhiji version`，需要 **3.4.0 或更新版本**。版本较旧时用 `zhiji upgrade` 更新；没有 CLI 时按 `zhiji-setup` 的安装说明获取对应平台的二进制。若尚未登录，让用户在智迹网页「令牌管理」签发个人访问令牌并自行执行 `zhiji login`。不要索要或回显令牌。
 
-有效地址与旧实例完全相同（忽略尾斜线）或尚未配置地址时，对本次所有 `zhiji` 进程设置
-`ZHIJI_API_URL=http://172.16.6.163:8090`，包括升级、技能更新、采集和提交。其它自定义地址
-保持原样，不能仅按 IP 子串替换。不要先访问旧站，失败后再把迁移问题当成令牌失效。
+团队实例为 `http://172.16.6.163:8090`。若当前账号配置仍指向旧实例 `http://172.16.6.139:8089`，本次命令设置 `ZHIJI_API_URL=http://172.16.6.163:8090`；用户明确指定其它实例时按其要求。不要把整个账号配置或 `.env.zhiji` 输出到对话中。
 
-迁移复用原 PAT 和项目 ID，无需重签令牌、重建项目或重置游标。升级 CLI 或技能不会自动修改
-保存的 `apiUrl`；用户要求永久迁移时，先备份再只更新该地址字段，保留令牌和其它字段。
-`zhiji login` 必须显式带 `--url <本次确定的实例地址>`，它不读取 `ZHIJI_API_URL` 来选择地址。
-
-## 准备 CLI
-
-先找 PATH 中的 `zhiji` 或本 SKILL.md 所在目录的 `bin/zhiji`（Windows 为 `bin/zhiji.exe`），运行 `version`。需要 **2.7.0 或更新版本**；版本过低或不存在时，下载到本技能的 `bin/`，不要覆盖系统中的旧文件。
-
-智迹地址默认 `http://172.16.6.163:8090`。用户指定的实例优先，其次参考 `~/.zhiji/config.json` 的 `apiUrl`。二进制统一从该实例的 `/skills/zhiji-setup/bin/` 下载：
-
-| 系统 | 文件名 |
-| --- | --- |
-| Windows x86_64 | `zhiji-windows-amd64.exe` |
-| macOS Apple 芯片 | `zhiji-darwin-arm64` |
-| macOS Intel | `zhiji-darwin-amd64` |
-| Linux x86_64 | `zhiji-linux-amd64` |
-| Linux arm64 | `zhiji-linux-arm64` |
-
-macOS / Linux 示例（将技能目录替换为实际绝对路径）：
+## 检索和阅读
 
 ```bash
-ZHIJI_BASE=http://172.16.6.163:8090
-ZHIJI_DIR="<技能目录>"
-mkdir -p "$ZHIJI_DIR/bin"
-curl -fsSL "$ZHIJI_BASE/skills/zhiji-setup/bin/zhiji-$(uname -s | tr 'A-Z' 'a-z')-$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/')" -o "$ZHIJI_DIR/bin/zhiji"
-chmod +x "$ZHIJI_DIR/bin/zhiji"
+zhiji doc categories
+zhiji doc search "应用商店过审" --category "Android/过审"
+zhiji doc list --category "iOS/过审"
+zhiji doc get <知识ID>
+zhiji doc download <知识ID> <附件ID> --out ./reference.pdf
 ```
 
-Windows PowerShell 示例：
+先搜索，再用稳定的知识 ID 读取全文。回答时注明条目标题、分类和 ID；不能把自己推测的内容说成知识库记录。分类必须用完整路径或 ID；没有匹配时不要猜一个相近分类。
 
-```powershell
-$zhijiBase = 'http://172.16.6.163:8090'
-$zhijiDir = '<技能目录>'
-New-Item -ItemType Directory -Force "$zhijiDir\bin" | Out-Null
-Invoke-WebRequest "$zhijiBase/skills/zhiji-setup/bin/zhiji-windows-amd64.exe" -OutFile "$zhijiDir\bin\zhiji.exe"
-```
+正文与可提取的附件文本会在 `get` 中显示。附件显示「未建立全文索引」时，搜索没有覆盖它的全文；需要时下载原文件查看，不能把这次检索说成覆盖了所有附件。GitLab 项目 Wiki 仍在各项目网页的「代码库」页签，不通过 `zhiji doc` 查询。
 
-下载后再次检查版本。本文的 `zhiji` 指选定的合格二进制，必要时用完整路径执行。
+## 上传
 
-若提示尚未登录，先按迁移规则核对地址；没有有效令牌时，让用户在智迹「令牌管理」签发并自己执行 `zhiji login --url <本次确定的实例地址> --token <你的令牌>`。不要索要、回显或写入项目令牌。
-
-## 查文档
+上传前先查同主题内容，确认所选二级分类正确。新知识上传后立即对全员可见。
 
 ```bash
-zhiji doc search "增量上报 游标"
-zhiji doc search "部署" --project root/zhiji --limit 10
+zhiji doc push --category "Android/过审" --title "应用商店审核经验" --file ./review.md
+zhiji doc push --category "AI/提示词" --title "提示词规范" < ./prompt.md
 ```
 
-**检索按项目逐个进行。** 命令会打印"搜索了 N 个项目"，无法搜索的项目连同原因打到标准错误。
-**搜不到和没搜成是两回事**：看到"N 个项目未能搜索"时要如实告诉用户哪些没覆盖，不能把半次扫描说成"团队文档里没有"。
+`--file` 将原文件作为附件上传；省略时从标准输入读取 Markdown 正文。支持 md、txt、csv、json、pdf、docx 和常见图片，单文件最多 20 MB。PDF 若无法提取文字、图片没有 OCR 时，文件仍可下载，但不会参与全文搜索。上传是写入全员共享知识，应先核对内容和分类。
 
-结果每条包含项目路径、文件路径、命中行号和正文片段。片段通常够判断了；需要全文再取：
-
-```bash
-zhiji doc list --project root/zhiji
-zhiji doc get  --project root/zhiji --page 接入说明
-```
-
-`--project` 可填数字 ID 或完整路径（如 `root/zhiji`）。名称不唯一时命令会列出候选并报错——**此时要把候选呈现给用户让其选择，不要自己挑一个**。
-
-## 写文档
-
-正文从标准输入或 `--file` 读入，必须是 UTF-8 文本，单次最多 1 MB：
-
-```bash
-zhiji doc push --project root/zhiji --title "发布流程" <<'EOF'
-# 发布流程
-
-## 前置检查
-...
-EOF
-```
-
-覆盖已有页面要带 `--slug <页面标识>`（标识来自 `doc list` 或 `doc search` 的输出）。**不带 `--slug` 是新建**；想更新却漏了它会多出一篇重复文档。
-
-写之前先 `doc search` 或 `doc list` 确认同主题文档是否已存在，存在就更新而不是另起一篇。写入会以用户本人的身份记录在 GitLab 的提交历史里。
-
-## 边界
-
-- 没有绑定 GitLab 时命令返回"尚未绑定"，让用户找管理员在网页「GitLab 账号」页同步一次；令牌过期同理。不要试图自己签发令牌。
-- 报 403 说明该项目不允许本人写入。如实说明，不要换个项目写进去。
-- 二进制文件不支持，提示用户直接用 git。
-- 不要把自己生成的内容说成是从团队文档里查到的；没查到就说没查到。
+旧 `zhiji doc --project/--page/--slug` 参数属于已退出的 GitLab Wiki CLI，用在新版知识库命令会报错。不要尝试改用 GitLab 仓库代替知识库分类。

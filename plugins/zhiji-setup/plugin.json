@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "zhiji-setup",
-  "version": "2.6.0",
-  "description": "创建项目、安装技能，并按项目类型从全库下发相关要求文档。",
+  "version": "2.10.0",
+  "description": "创建智迹项目，安装上报、工单、仓库与知识库技能。",
   "author": {
     "name": "YangChengTeam"
   },
@@ -16,7 +16,7 @@
     "com.openai": {
       "interface": {
         "displayName": "智迹一键接入",
-        "shortDescription": "接入项目、安装技能、按类型下发全库相关资料",
+        "shortDescription": "创建智迹项目，安装上报、工单、仓库与知识库技能。",
         "category": "Productivity"
       }
     }
